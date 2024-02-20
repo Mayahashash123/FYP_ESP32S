@@ -14,7 +14,8 @@ void Odrive_init()
 
 void testMotor()
 {
-    float velocity = 0.1;
+    float velocity = 0.2;
+    
     // if (Serial.available())
     // {
 
