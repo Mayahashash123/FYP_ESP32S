@@ -1,38 +1,58 @@
 #include <ODrive.hpp>
 
-// HardwareSerial &back_odrive_serial = Serial1;
-// HardwareSerial &front_odrive_serial = Serial1;
+HardwareSerial &back_odrive_serial = Serial2;
+SoftwareSerial front_odrive_serial(SoftwareSerial_PIN_RX, SoftwareSerial_PIN_TX); // RX, TX
 
-ODriveArduino back_odrive(Serial2);
-// ODriveArduino front_odrive(front_odrive_serial);
+ODriveArduino back_odrive(back_odrive_serial);
+ODriveArduino front_odrive(front_odrive_serial);
 
 void Odrive_init()
 {
-    // front_odrive_serial.begin(BAUDRATE, SERIAL_8N1, ESP32_UART0_PIN_TX, ESP32_UART0_PIN_RX);
-    Serial1.begin(BAUDRATE, SERIAL_8N1, ESP32_UART2_PIN_TX, ESP32_UART2_PIN_RX);
+    front_odrive_serial.begin(BAUDRATE);
+    back_odrive_serial.begin(BAUDRATE);
+    Serial.println("odrive initialized");
 }
 
-void testMotor()
+float velocity;
+
+void Serial_Motor_Test()
 {
-    float velocity = 0.2;
-    
-    // if (Serial.available())
-    // {
+    if (Serial.available())
+    {
+        char c = Serial.read();
+        switch (c)
+        {
+        case 'v':
+            back_odrive_serial << "back vbus_voltage\n";
+            Serial << "Vbus voltage: " << back_odrive.readFloat() << '\n';
 
-    //     if (Serial.read() == 'f' && velocity < 0.2){
-    //         velocity = velocity + 0.;
-    //         Serial.println("f");
-    //     }
-    //     else if (Serial.read()== 'b' && velocity > -0.2){
-    //         velocity = velocity - 0.01;
-    //         Serial.println("b");
-    //     }
+            front_odrive_serial << "front vbus_voltage\n";
+            Serial << "Vbus voltage: " << front_odrive.readFloat() << '\n';
+            break;
 
-    // }
-    Serial.println(velocity);
-    back_odrive.SetVelocity(BackLeftMotor, velocity);
-    back_odrive.SetVelocity(BackRightMotor, velocity);
+        case 's':
+            velocity = 0.0;
+            break;
 
+        case 'f':
+            velocity = velocity == 0.0 ? 0.5 : velocity + 0.1;
+            break;
+
+        case 'r':
+            velocity = velocity == 0.0 ? -0.5 : velocity - 0.1;
+            break;
+
+        default:
+            velocity = 0;
+            break;
+        }
+
+        Serial.println(velocity);
+        back_odrive.SetVelocity(BackLeftMotor, velocity);
+        back_odrive.SetVelocity(BackRightMotor, velocity);
+        front_odrive.SetVelocity(FrontLeftMotor, velocity);
+        front_odrive.SetVelocity(FrontRightMotor, velocity);
+    }
 }
 
 void driveMotors(float linear_velocity, float angular_velocity)

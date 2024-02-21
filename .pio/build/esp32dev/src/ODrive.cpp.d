@@ -133,4 +133,5 @@
  /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/io_pin_remap.h \
  /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/Arduino.h \
  lib/ODriveArduino/ODriveEnums.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/HardwareSerial.h
+ /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/HardwareSerial.h \
+ lib/Esp32-SoftwareSerial/SoftwareSerial.h

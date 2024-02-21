@@ -3,9 +3,10 @@
 
 #include <ODriveArduino.h>
 #include <HardwareSerial.h>
+#include <SoftwareSerial.h>
 
-#define ESP32_UART0_PIN_TX 1
-#define ESP32_UART0_PIN_RX 3
+#define SoftwareSerial_PIN_RX 18
+#define SoftwareSerial_PIN_TX 19
 
 #define ESP32_UART2_PIN_TX 17                                      
 #define ESP32_UART2_PIN_RX 16
@@ -25,8 +26,21 @@ extern float left_velocity;
 
 void Odrive_init();
 void driveMotors(float linear_velocity, float angular_velocity);
-void testMotor();
+void Serial_Motor_Test();
 
 
+// Printing with stream operator helper functions
+template <class T>
+inline Print &operator<<(Print &obj, T arg)
+{
+  obj.print(arg);
+  return obj;
+}
+template <>
+inline Print &operator<<(Print &obj, float arg)
+{
+  obj.print(arg, 4);
+  return obj;
+}
 
 #endif

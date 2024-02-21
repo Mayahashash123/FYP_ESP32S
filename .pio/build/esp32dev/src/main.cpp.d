@@ -1,31 +1,6 @@
 .pio/build/esp32dev/src/main.cpp.o: src/main.cpp \
- /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/HardwareSerial.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/Stream.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/Print.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/WString.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/pgmspace.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/Printable.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_system/include/esp_system.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_common/include/esp_err.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_common/include/esp_compiler.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_common/include/esp_attr.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_common/include/esp_bit_defs.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_common/include/esp_idf_version.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_hw_support/include/esp_mac.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_hw_support/include/esp_chip_info.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_hw_support/include/esp_random.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_hw_support/include/esp_sleep.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/hal/include/hal/touch_sensor_types.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/soc.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_common/include/esp_assert.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/soc_caps.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/hal/include/hal/gpio_types.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/include/soc/gpio_periph.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/io_mux_reg.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/gpio_struct.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/gpio_reg.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/gpio_sig_map.h \
+ /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/Arduino.h \
+ /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp_arduino_version.h \
  /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/freertos/FreeRTOS.h \
  /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/esp_additions/freertos/FreeRTOSConfig.h \
  /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_common/include/esp_compiler.h \
@@ -58,16 +33,28 @@
  /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_hw_support/include/soc/cpu.h \
  /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_hw_support/include/esp_cpu.h \
  /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/hal/include/hal/cpu_hal.h \
+ /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_common/include/esp_err.h \
+ /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_common/include/esp_compiler.h \
+ /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/soc_caps.h \
  /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/hal/include/hal/cpu_types.h \
  /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/hal/esp32/include/hal/cpu_ll.h \
+ /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_common/include/esp_attr.h \
  /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/xtensa/esp32/include/xtensa/config/extreg.h \
+ /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_common/include/esp_bit_defs.h \
  /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_hw_support/include/soc/compare_set.h \
  /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/include/soc/soc_memory_types.h \
+ /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/soc.h \
+ /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_common/include/esp_assert.h \
  /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_system/include/esp_private/crosscore_int.h \
  /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_timer/include/esp_timer.h \
  /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/newlib/platform_include/esp_newlib.h \
  /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/heap/include/esp_heap_caps.h \
  /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/heap/include/multi_heap.h \
+ /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_system/include/esp_system.h \
+ /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_common/include/esp_idf_version.h \
+ /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_hw_support/include/esp_mac.h \
+ /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_hw_support/include/esp_chip_info.h \
+ /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_hw_support/include/esp_random.h \
  /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/port/xtensa/include/freertos/portbenchmark.h \
  /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/xtensa/include/xtensa/xtensa_api.h \
  /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/xtensa/include/xtensa/xtensa_context.h \
@@ -76,9 +63,18 @@
  /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/freertos/task.h \
  /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/freertos/list.h \
  /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/esp_additions/freertos/task_snapshot.h \
+ /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/freertos/semphr.h \
  /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/freertos/queue.h \
  /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/freertos/task.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/freertos/semphr.h \
+ /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal.h \
+ /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_hw_support/include/esp_sleep.h \
+ /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/hal/include/hal/touch_sensor_types.h \
+ /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/hal/include/hal/gpio_types.h \
+ /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/include/soc/gpio_periph.h \
+ /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/io_mux_reg.h \
+ /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/gpio_struct.h \
+ /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/gpio_reg.h \
+ /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/gpio_sig_map.h \
  /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/freertos/queue.h \
  /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/freertos/event_groups.h \
  /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/freertos/timers.h \
@@ -106,14 +102,15 @@
  /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-psram.h \
  /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-rgb-led.h \
  /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-cpu.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/HWCDC.h \
- lib/ODriveArduino/ODriveArduino.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/Arduino.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp_arduino_version.h \
  /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp8266-compat.h \
  /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/stdlib_noniso.h \
  /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/binary.h \
  /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/WCharacter.h \
+ /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/WString.h \
+ /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/pgmspace.h \
+ /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/Stream.h \
+ /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/Print.h \
+ /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/Printable.h \
  /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/IPAddress.h \
  /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/WString.h \
  /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/Printable.h \
@@ -123,6 +120,7 @@
  /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/Stream.h \
  /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/IPAddress.h \
  /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/HardwareSerial.h \
+ /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/HWCDC.h \
  /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/Esp.h \
  /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/spi_flash/include/esp_partition.h \
  /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/spi_flash/include/esp_flash.h \
@@ -133,4 +131,16 @@
  /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_hw_support/include/soc/esp32/spiram.h \
  /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/io_pin_remap.h \
  /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/Arduino.h \
- lib/ODriveArduino/ODriveEnums.h
+ include/RC_Control.hpp \
+ /home/maya/.platformio/packages/framework-arduinoespressif32/libraries/BluetoothSerial/src/BluetoothSerial.h \
+ /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/bt/host/bluedroid/api/include/api/esp_gap_bt_api.h \
+ /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/bt/host/bluedroid/api/include/api/esp_bt_defs.h \
+ /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/bt/host/bluedroid/api/include/api/esp_spp_api.h \
+ /home/maya/.platformio/packages/framework-arduinoespressif32/libraries/BluetoothSerial/src/BTScan.h \
+ /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/Print.h \
+ /home/maya/.platformio/packages/framework-arduinoespressif32/libraries/BluetoothSerial/src/BTAddress.h \
+ /home/maya/.platformio/packages/framework-arduinoespressif32/libraries/BluetoothSerial/src/BTAdvertisedDevice.h \
+ include/ODrive.hpp lib/ODriveArduino/ODriveArduino.h \
+ lib/ODriveArduino/ODriveEnums.h \
+ /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/HardwareSerial.h \
+ lib/Esp32-SoftwareSerial/SoftwareSerial.h
