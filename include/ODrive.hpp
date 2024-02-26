@@ -11,7 +11,7 @@
 #define ESP32_UART2_PIN_TX 17                                      
 #define ESP32_UART2_PIN_RX 16
 
-#define BAUDRATE 115200
+#define BAUDRATE 9600
 
 #define WheelRadius 0.0825
 #define RobotBase 0.26
@@ -25,8 +25,8 @@ extern float right_velocity;
 extern float left_velocity;
 
 void Odrive_init();
-void driveMotors(float linear_velocity, float angular_velocity);
-void Serial_Motor_Test();
+void driveMotors(char input);
+void Serial_Motor_Test(char input); 
 
 
 // Printing with stream operator helper functions

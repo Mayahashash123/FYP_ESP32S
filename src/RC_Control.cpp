@@ -1,15 +1,18 @@
 #include <RC_Control.hpp>
 BluetoothSerial SerialBT;
 
-void bluetooth_init(){
+void bluetooth_init()
+{
     SerialBT.begin("ESP32s");
 }
 
-void RC_data(){
-    if (Serial.available()) {
-        SerialBT.write(Serial.read());
+char Read_RC_Input()
+{
+    char rc_input= 'e';
+    if (SerialBT.available())
+    {
+        rc_input = SerialBT.read();
+        // Serial.write(rc_input);
     }
-    if (SerialBT.available()) {
-        Serial.write(SerialBT.read());
-    }
+    return rc_input;
 }

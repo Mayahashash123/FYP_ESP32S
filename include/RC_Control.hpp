@@ -4,6 +4,6 @@
 #include "BluetoothSerial.h"
 
 void bluetooth_init();
-void RC_data();
+char Read_RC_Input();
 
 #endif
