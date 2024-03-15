@@ -143,4 +143,36 @@
  include/ODrive.hpp lib/ODriveArduino/ODriveArduino.h \
  lib/ODriveArduino/ODriveEnums.h \
  /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/HardwareSerial.h \
- lib/Esp32-SoftwareSerial/SoftwareSerial.h
+ lib/Esp32-SoftwareSerial/SoftwareSerial.h \
+ .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/nav_msgs/Odometry.h \
+ .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/ros/msg.h \
+ .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/ArduinoIncludes.h \
+ .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/std_msgs/Header.h \
+ .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/ros/time.h \
+ .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/ros/duration.h \
+ .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/geometry_msgs/PoseWithCovariance.h \
+ .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/geometry_msgs/Pose.h \
+ .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/geometry_msgs/Point.h \
+ .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/geometry_msgs/Quaternion.h \
+ .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/geometry_msgs/TwistWithCovariance.h \
+ .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/geometry_msgs/Twist.h \
+ .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/geometry_msgs/Vector3.h \
+ include/ROS_Node.hpp \
+ .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/ros.h \
+ .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/ros/node_handle.h \
+ .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/std_msgs/Time.h \
+ .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/rosserial_msgs/TopicInfo.h \
+ .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/rosserial_msgs/Log.h \
+ .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/rosserial_msgs/RequestParam.h \
+ .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/ros/publisher.h \
+ .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/ros/node_handle.h \
+ .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/ros/subscriber.h \
+ .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/ros/service_server.h \
+ .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/ros/service_client.h \
+ .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/ArduinoHardware.h \
+ .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/ArduinoIncludes.h \
+ .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/std_msgs/String.h \
+ .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/tf/transform_broadcaster.h \
+ .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/tf/tfMessage.h \
+ .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/geometry_msgs/TransformStamped.h \
+ .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/geometry_msgs/Transform.h

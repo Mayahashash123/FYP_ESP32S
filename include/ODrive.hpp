@@ -5,6 +5,8 @@
 #include <HardwareSerial.h>
 #include <SoftwareSerial.h>
 
+#include <nav_msgs/Odometry.h>
+
 #define SoftwareSerial_PIN_RX 18
 #define SoftwareSerial_PIN_TX 19
 
@@ -25,7 +27,10 @@ extern float right_velocity;
 extern float left_velocity;
 
 void Odrive_init();
-void driveMotors(char input);
+void driveMotors_RC(char input);
+void driveMotors(float linear_velocity, float angular_velocity);
+nav_msgs::Odometry getOdom();
+
 void Serial_Motor_Test(char input); 
 
 

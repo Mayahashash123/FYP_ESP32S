@@ -136,6 +136,8 @@
  .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/ros/node_handle.h \
  .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/std_msgs/Time.h \
  .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/ros/msg.h \
+ .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/ArduinoIncludes.h \
+ /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/HardwareSerial.h \
  .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/ros/time.h \
  .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/ros/duration.h \
  .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/rosserial_msgs/TopicInfo.h \
@@ -146,67 +148,19 @@
  .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/ros/subscriber.h \
  .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/ros/service_server.h \
  .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/ros/service_client.h \
- .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/ArduinoTcpHardware.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src/WiFi.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/Print.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/IPv6Address.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src/WiFiType.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_wifi/include/esp_wifi_types.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_wifi/include/esp_private/esp_wifi_types_private.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_hw_support/include/esp_interface.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_event/include/esp_event_base.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src/WiFiSTA.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src/WiFiGeneric.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_event/include/esp_event.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_event/include/esp_event_base.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_event/include/esp_event_legacy.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_netif/include/esp_netif.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_netif/include/esp_netif_ip_addr.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_netif/include/esp_netif_types.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_netif/include/esp_netif_defaults.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_eth/include/esp_eth_netif_glue.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_eth/include/esp_eth.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_eth/include/esp_eth_com.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/hal/include/hal/eth_types.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_eth/include/esp_eth_mac.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_eth/include/esp_eth_phy.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/tcpip_adapter/include/tcpip_adapter.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/tcpip_adapter/include/tcpip_adapter_types.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/lwip/src/include/lwip/ip_addr.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/lwip/src/include/lwip/opt.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/port/esp32/include/lwipopts.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/newlib/platform_include/sys/ioctl.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_system/include/esp_task.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/esp_additions/freertos/FreeRTOSConfig.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/port/esp32/include/netif/dhcp_state.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/port/esp32/include/sntp/sntp_get_set_time.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/lwip/src/include/lwip/debug.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/lwip/src/include/lwip/arch.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/port/esp32/include/arch/cc.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/port/esp32/include/arch/sys_arch.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/port/esp32/include/arch/vfs_lwip.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/lwip/src/include/lwip/def.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/lwip/src/include/lwip/ip4_addr.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/lwip/src/include/lwip/ip6_addr.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/lwip/src/include/lwip/def.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/lwip/src/include/lwip/ip6_zone.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/include/apps/dhcpserver/dhcpserver.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/lwip/src/include/lwip/err.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_netif/include/esp_netif_sta_list.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_wifi/include/esp_smartconfig.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/wifi_provisioning/include/wifi_provisioning/manager.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/protocomm/include/common/protocomm.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/protocomm/include/security/protocomm_security.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/wifi_provisioning/include/wifi_provisioning/wifi_config.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src/WiFiAP.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src/WiFiScan.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src/WiFiClient.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/Client.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src/WiFiServer.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/Server.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src/WiFiUdp.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/Udp.h \
- /home/maya/.platformio/packages/framework-arduinoespressif32/cores/esp32/cbuf.h \
+ .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/ArduinoHardware.h \
+ .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/ArduinoIncludes.h \
  .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/std_msgs/String.h \
  .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/geometry_msgs/Twist.h \
- .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/geometry_msgs/Vector3.h
+ .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/geometry_msgs/Vector3.h \
+ .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/nav_msgs/Odometry.h \
+ .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/std_msgs/Header.h \
+ .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/geometry_msgs/PoseWithCovariance.h \
+ .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/geometry_msgs/Pose.h \
+ .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/geometry_msgs/Point.h \
+ .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/geometry_msgs/Quaternion.h \
+ .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/geometry_msgs/TwistWithCovariance.h \
+ .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/tf/transform_broadcaster.h \
+ .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/tf/tfMessage.h \
+ .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/geometry_msgs/TransformStamped.h \
+ .pio/libdeps/esp32dev/Rosserial\ Arduino\ Library/src/geometry_msgs/Transform.h

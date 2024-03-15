@@ -12,7 +12,6 @@ char Read_RC_Input()
     if (SerialBT.available())
     {
         rc_input = SerialBT.read();
-        // Serial.write(rc_input);
     }
     return rc_input;
 }
