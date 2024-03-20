@@ -16,7 +16,7 @@ const float tyre_circumference = 2 * 3.14159 * WheelRadius;
 
 void Odrive_init()
 {
-    Serial.begin(9600);
+    // Serial.begin(9600);
     front_odrive_serial.begin(BAUDRATE);
     back_odrive_serial.begin(BAUDRATE);
     // Serial.println("odrive initialized");
@@ -78,11 +78,11 @@ void driveMotors_RC(char input)
         break;
 
     case 'l':
-        angular_velocity += 0.07;
+        angular_velocity += 0.1;
         break;
 
     case 'r':
-        angular_velocity -= 0.07;
+        angular_velocity -= 0.1;
         break;
     }
 
@@ -98,15 +98,20 @@ void driveMotors_RC(char input)
 void getPosition(bool debug = false)
 {
     front_right_position = front_odrive.GetPosition(FrontRightMotor);
-    front_left_position = front_odrive.GetPosition(FrontLeftMotor);
+    front_left_position = -1 * front_odrive.GetPosition(FrontLeftMotor);
 
     back_right_position = back_odrive.GetPosition(BackRightMotor);
-    back_left_position = back_odrive.GetPosition(BackLeftMotor);
+    back_left_position = -1 * back_odrive.GetPosition(BackLeftMotor);
 
     previous_average_position = average_position;
 
     average_position.first = (front_right_position + back_right_position) / 2.0;
     average_position.second = (front_left_position + back_left_position) / 2.0;
+
+    // print_on_terminal("right position:", average_position.first);
+    // print_on_terminal("left position:", average_position.second);
+    // print_on_terminal("--------------------", 0);
+
 
     if (debug)
     {
@@ -126,6 +131,7 @@ void euler_to_quat(float x, float y, float z, float *q)
 
 nav_msgs::Odometry getOdom()
 {
+    getPosition();
     nav_msgs::Odometry odom;
 
     // position in meters
@@ -147,9 +153,16 @@ nav_msgs::Odometry getOdom()
     float xd = cos(theta) * distance;
     float yd = -sin(theta) * distance;
 
-    actual_x += cos(theta) * xd - sin(theta) * yd;
-    actual_y += sin(theta) * xd + cos(theta) * yd;
     orientation = (orientation + theta);
+
+    actual_x += cos(orientation) * xd - sin(orientation) * yd;
+    actual_y += sin(orientation) * xd + cos(orientation) * yd;
+
+    // print_on_terminal("xd: ", xd);
+    // print_on_terminal("yd: ", yd);
+    // print_on_terminal("actual_y: ", actual_y);
+    // print_on_terminal("theta: ", theta);
+    // print_on_terminal("-----------------------", 0);
 
     if (orientation > 2 * 3.14159)
         orientation = 0;
