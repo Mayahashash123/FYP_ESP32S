@@ -13,6 +13,10 @@ void setup()
   Rosserial_init();
   pinMode(2, OUTPUT);
 }
+/*
+ TODO: make state machine for the connection and disconnection of the ros node
+ TODO: make software architecture to the code (class based)!!!
+*/
 
 void loop()
 {
