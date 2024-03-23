@@ -112,8 +112,8 @@ void publish_odom()
 
 void ROS_Update()
 {
-    digitalWrite(2, nh.connected());
     is_ros_connected = nh.connected();
+    digitalWrite(2, is_ros_connected);
     nh.spinOnce();
     delay(1);
 }

@@ -38,7 +38,7 @@
 #include "ros/node_handle.h"
 
 #if defined(ESP8266) or defined(ESP32) or defined(ROSSERIAL_ARDUINO_TCP)
-  #include "ArduinoTcpHardware.h"
+  #include "ArduinoHardware.h"
 #else
   #include "ArduinoHardware.h"
 #endif
@@ -59,7 +59,8 @@ namespace ros
 
 #else
 
-  typedef NodeHandle_<ArduinoHardware> NodeHandle; // default 25, 25, 512, 512
+  typedef NodeHandle_<ArduinoHardware, 25, 25, 2048, 2048> NodeHandle;
+  // typedef NodeHandle_<ArduinoHardware> NodeHandle; // default 25, 25, 512, 512
 
 #endif
 }

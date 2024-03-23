@@ -32,12 +32,12 @@ void loop()
   {
     // drive motors from laptop
     driveMotors(get_linear_velocity(), get_angular_velocity());
-  }
-
-  if (millis() - previous_millis > time_interval)
-  {
-    publish_odom();
-    previous_millis = millis();
+    
+    if (millis() - previous_millis > time_interval)
+    {
+      publish_odom();
+      previous_millis = millis();
+    }
   }
 
   // ros_spin
