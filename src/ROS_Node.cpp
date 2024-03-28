@@ -21,22 +21,24 @@ void Rosserial_init()
 
 void cmd_vel_cb(const geometry_msgs::Twist &cmd_msg)
 {
-    linear_x = cmd_msg.linear.x,       // m/s
-        angular_z = cmd_msg.angular.z; // rad/s
-    nh.loginfo((" " + String(linear_x)).c_str());
+    linear_x = cmd_msg.linear.x;       // m/s
+    angular_z = cmd_msg.angular.z; // rad/s
+    // nh.loginfo((" " + String(linear_x)).c_str());
 }
 
-// void publish_odom(const geometry_msgs::Pose input_pose_msg, const geometry_msgs::Twist input_twist_msg)
-void publish_odom()
+void publish_odom(std::pair<geometry_msgs::Pose, geometry_msgs::Twist> odometry)
+// void publish_odom()
 {
+    const geometry_msgs::Pose input_pose_msg = odometry.first;
+    const geometry_msgs::Twist input_twist_msg = odometry.second;
 
-    pose_msg.position.x = random();
-    pose_msg.position.y = random();
-    pose_msg.orientation.z = random();
-    pose_msg.orientation.w = random();
+    pose_msg.position.x = input_pose_msg.position.x;
+    pose_msg.position.y = input_pose_msg.position.y;
+    pose_msg.orientation.z = input_pose_msg.orientation.z;
+    pose_msg.orientation.w = input_pose_msg.orientation.w;
 
-    twist_msg.linear.x = random();
-    twist_msg.angular.z = random();
+    twist_msg.linear.x = input_twist_msg.linear.x;
+    twist_msg.angular.z = input_twist_msg.angular.z;
 
     // Publish the odom message
     pose_pub.publish(&pose_msg);
@@ -45,11 +47,14 @@ void publish_odom()
 
 float get_linear_velocity()
 {
+    nh.loginfo(("linear: " + String(linear_x)).c_str());
     return linear_x;
 }
 
 float get_angular_velocity()
 {
+    nh.loginfo(("angular: " + String(angular_z)).c_str());
+    nh.loginfo("-------------------");
     return angular_z;
 }
 

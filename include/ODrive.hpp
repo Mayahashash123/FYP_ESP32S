@@ -29,7 +29,8 @@ extern float left_velocity;
 void Odrive_init();
 void driveMotors_RC(char input);
 void driveMotors(float linear_velocity, float angular_velocity);
-nav_msgs::Odometry getOdom();
+std::pair<geometry_msgs::Pose, geometry_msgs::Twist> getOdom();
+
 
 void Serial_Motor_Test(char input); 
 
