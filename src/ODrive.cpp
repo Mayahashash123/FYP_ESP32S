@@ -50,13 +50,16 @@ void Serial_Motor_Test(char input)
 
 void driveMotors(float linear_velocity, float angular_velocity)
 {
-    right_velocity = (linear_velocity + angular_velocity * RobotBase / 2.0) / WheelRadius;
-    left_velocity = (linear_velocity - angular_velocity * RobotBase / 2.0) / WheelRadius;
+    right_velocity = linear_velocity + (angular_velocity * WheelBase / 2.0);
+    left_velocity = linear_velocity - (angular_velocity * WheelBase / 2.0);
 
-    back_odrive.SetVelocity(BackLeftMotor, -left_velocity, 1);
-    back_odrive.SetVelocity(BackRightMotor, right_velocity, 1);
-    front_odrive.SetVelocity(FrontLeftMotor, -left_velocity, 1);
-    front_odrive.SetVelocity(FrontRightMotor, right_velocity, 1);
+    float left_velocity_rps = left_velocity / tyre_circumference;
+    float right_velocity_rps = right_velocity / tyre_circumference;
+
+    back_odrive.SetVelocity(BackLeftMotor, -left_velocity_rps, 1);
+    back_odrive.SetVelocity(BackRightMotor, right_velocity_rps, 1);
+    front_odrive.SetVelocity(FrontLeftMotor, -left_velocity_rps, 1);
+    front_odrive.SetVelocity(FrontRightMotor, right_velocity_rps, 1);
 }
 
 void getPosition(bool debug = false)
@@ -102,33 +105,26 @@ std::pair<geometry_msgs::Pose, geometry_msgs::Twist> getOdom()
     // nav_msgs::Odometry odom;
     geometry_msgs::Pose _pose;
     geometry_msgs::Twist _twist;
-
+    // calculate velocity
     float linear_x = tyre_circumference * (motor_speed.second + motor_speed.first) / (2.0);
-    float angular_z = tyre_circumference * (motor_speed.first - motor_speed.second) / (RobotBase);
+    float angular_z = tyre_circumference * (motor_speed.first - motor_speed.second) / (WheelBase);
 
     // position in meters
-    float right_position_in_meter = average_position.first * tyre_circumference;
     float left_position_in_meter = average_position.second * tyre_circumference;
-
-    float previous_right_position_in_meter = previous_average_position.first * tyre_circumference;
-    float previous_left_position_in_meter = previous_average_position.second * tyre_circumference;
-
-    // Distance travelled
-    float left_distance_traveled = right_position_in_meter - previous_right_position_in_meter;
-    float right_distance_traveled = left_position_in_meter - previous_left_position_in_meter;
+    float right_position_in_meter = average_position.first * tyre_circumference;
 
     // average distance and angle
-    float distance = (left_distance_traveled + right_distance_traveled) / 2.0;
-    float theta = (right_distance_traveled - left_distance_traveled) / RobotBase;
+    float distance = (left_position_in_meter + right_position_in_meter) / 2.0;
+    float delta_theta = (right_position_in_meter - left_position_in_meter) / WheelBase;
 
     // get distance in x and y (projection)
-    float xd = cos(theta) * distance;
-    float yd = -sin(theta) * distance;
+    orientation += delta_theta;
 
-    orientation = (orientation + theta);
+    float xd = cos(orientation) * distance;
+    float yd = -sin(orientation) * distance;
 
-    actual_x += cos(orientation) * xd - sin(orientation) * yd;
-    actual_y += sin(orientation) * xd + cos(orientation) * yd;
+    actual_x += xd;
+    actual_y += yd;
 
     if (orientation > 2 * 3.14159)
         orientation = 0;
@@ -147,3 +143,56 @@ std::pair<geometry_msgs::Pose, geometry_msgs::Twist> getOdom()
 
     return {_pose, _twist};
 }
+
+
+// std::pair<geometry_msgs::Pose, geometry_msgs::Twist> getOdom()
+// {
+//     getPosition();
+//     // nav_msgs::Odometry odom;
+//     geometry_msgs::Pose _pose;
+//     geometry_msgs::Twist _twist;
+
+//     float linear_x = tyre_circumference * (motor_speed.second + motor_speed.first) / (2.0);
+//     float angular_z = tyre_circumference * (motor_speed.first - motor_speed.second) / (WheelBase);
+
+//     // position in meters
+//     float right_position_in_meter = average_position.first * tyre_circumference;
+//     float left_position_in_meter = average_position.second * tyre_circumference;
+
+//     float previous_right_position_in_meter = previous_average_position.first * tyre_circumference;
+//     float previous_left_position_in_meter = previous_average_position.second * tyre_circumference;
+
+//     // Distance travelled
+//     float right_distance_traveled = right_position_in_meter - previous_right_position_in_meter;
+//     float left_distance_traveled = left_position_in_meter - previous_left_position_in_meter;
+
+//     // average distance and angle
+//     float distance = (left_distance_traveled + right_distance_traveled) / 2.0;
+//     float theta = (right_distance_traveled - left_distance_traveled) / WheelBase;
+
+//     // get distance in x and y (projection)
+//     float xd = cos(theta) * distance;
+//     float yd = -sin(theta) * distance;
+
+//     orientation = (orientation + theta);
+
+//     actual_x += cos(orientation) * xd - sin(orientation) * yd;
+//     actual_y += sin(orientation) * xd + cos(orientation) * yd;
+
+//     if (orientation > 2 * 3.14159)
+//         orientation = 0;
+
+//     _pose.position.x = actual_x;
+//     _pose.position.y = actual_y;
+
+//     float q[4];
+//     euler_to_quat(0, 0, orientation, q);
+
+//     _pose.orientation.z = q[2];
+//     _pose.orientation.w = q[3];
+
+//     _twist.linear.x = linear_x;
+//     _twist.angular.z = angular_z;
+
+//     return {_pose, _twist};
+// }
