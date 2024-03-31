@@ -50,16 +50,13 @@ void Serial_Motor_Test(char input)
 
 void driveMotors(float linear_velocity, float angular_velocity)
 {
-    right_velocity = linear_velocity + (angular_velocity * WheelBase / 2.0);
-    left_velocity = linear_velocity - (angular_velocity * WheelBase / 2.0);
+    right_velocity = (linear_velocity + angular_velocity * RobotBase / 2.0) / tyre_circumference;
+    left_velocity = (linear_velocity - angular_velocity * RobotBase / 2.0) / tyre_circumference;
 
-    float left_velocity_rps = left_velocity / tyre_circumference;
-    float right_velocity_rps = right_velocity / tyre_circumference;
-
-    back_odrive.SetVelocity(BackLeftMotor, -left_velocity_rps, 1);
-    back_odrive.SetVelocity(BackRightMotor, right_velocity_rps, 1);
-    front_odrive.SetVelocity(FrontLeftMotor, -left_velocity_rps, 1);
-    front_odrive.SetVelocity(FrontRightMotor, right_velocity_rps, 1);
+    back_odrive.SetVelocity(BackLeftMotor, -left_velocity, 1);
+    back_odrive.SetVelocity(BackRightMotor, right_velocity, 1);
+    front_odrive.SetVelocity(FrontLeftMotor, -left_velocity, 1);
+    front_odrive.SetVelocity(FrontRightMotor, right_velocity, 1);
 }
 
 void getPosition(bool debug = false)
@@ -80,11 +77,14 @@ void getPosition(bool debug = false)
 
     motor_speed.first = back_odrive.GetVelocity(BackRightMotor);
     motor_speed.second = -1 * back_odrive.GetVelocity(BackLeftMotor);
+    // print_on_terminal("back right: ", average_position.first);
+    // print_on_terminal("back right: ", average_position.first);
+    // print_on_terminal("-------------------", 0);
 
     if (debug)
     {
-        Serial.println("front right: " + String(front_right_position));
-        Serial.println("front left: " + String(front_left_position));
+        // Serial.println("front right: " + String(front_right_position));
+        // Serial.println("front left: " + String(front_left_position));
         Serial.println("back right: " + String(back_right_position));
         Serial.println("back left: " + String(back_left_position));
         Serial.println("-------");
@@ -107,15 +107,26 @@ std::pair<geometry_msgs::Pose, geometry_msgs::Twist> getOdom()
     geometry_msgs::Twist _twist;
     // calculate velocity
     float linear_x = tyre_circumference * (motor_speed.second + motor_speed.first) / (2.0);
-    float angular_z = tyre_circumference * (motor_speed.first - motor_speed.second) / (WheelBase);
+    float angular_z = tyre_circumference * (motor_speed.first - motor_speed.second) / (RobotBase);
 
     // position in meters
-    float left_position_in_meter = average_position.second * tyre_circumference;
     float right_position_in_meter = average_position.first * tyre_circumference;
+    float left_position_in_meter = average_position.second * tyre_circumference;
+
+    float previous_right_position_in_meter = previous_average_position.first * tyre_circumference;
+    float previous_left_position_in_meter = previous_average_position.second * tyre_circumference;
+
+    // Distance travelled
+    float right_distance_traveled = right_position_in_meter - previous_right_position_in_meter;
+    float left_distance_traveled = left_position_in_meter - previous_left_position_in_meter;
 
     // average distance and angle
-    float distance = (left_position_in_meter + right_position_in_meter) / 2.0;
-    float delta_theta = (right_position_in_meter - left_position_in_meter) / WheelBase;
+    float distance = (left_distance_traveled + right_distance_traveled) / 2.0;
+    float delta_theta = (right_distance_traveled - left_distance_traveled) / RobotBase;
+
+    // print_on_terminal("distance: ",distance);
+    // print_on_terminal("delta_theta",delta_theta);
+
 
     // get distance in x and y (projection)
     orientation += delta_theta;
@@ -125,7 +136,10 @@ std::pair<geometry_msgs::Pose, geometry_msgs::Twist> getOdom()
 
     actual_x += xd;
     actual_y += yd;
-
+    // print_on_terminal("actual_x",actual_x);
+    // print_on_terminal("actual_y",actual_y);
+    // print_on_terminal("\n---------------------",0);
+    
     if (orientation > 2 * 3.14159)
         orientation = 0;
 

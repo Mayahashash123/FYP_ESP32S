@@ -14,7 +14,6 @@ void RC_Control(float &linear_velocity, float &angular_velocity)
     if (!is_bluetooth_connected)
     {
         rc_input = 's';
-        return;
     }
 
     if (SerialBT.available())

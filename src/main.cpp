@@ -19,7 +19,7 @@ std::pair<float, float> Ros_Cmd;
 
 void loop()
 {
-  RC_Control(RC_Cmd.first, RC_Cmd.second); // zeros if not connected
+  RC_Control(RC_Cmd.first, RC_Cmd.second); // zeros if not RC connected
 
   if (!is_ros_connected && !is_bluetooth_connected)
   {

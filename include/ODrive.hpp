@@ -16,7 +16,7 @@
 #define BAUDRATE 9600
 
 #define WheelRadius 0.0825
-#define WheelBase 0.26
+#define RobotBase 0.26
 
 #define BackRightMotor 0
 #define BackLeftMotor 1
