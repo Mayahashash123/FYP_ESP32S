@@ -1,27 +1,63 @@
 #include <ROS_Node.hpp>
 
 ros::NodeHandle nh;
+
 ros::Subscriber<geometry_msgs::Twist> sub("cmd_vel", &cmd_vel_cb);
+ros::Subscriber<std_msgs::Bool> goToHomeSub("go_home", &go_to_home_cb);
+ros::Subscriber<std_msgs::Int16> goalSub("goal_distance", &goal_distance_cb);
+
 geometry_msgs::Pose pose_msg;
 geometry_msgs::Twist twist_msg;
+std_msgs::String mechanism_states_msg;
+
 ros::Publisher pose_pub("pose", &pose_msg);
 ros::Publisher twist_pub("twist", &twist_msg);
+ros::Publisher mechanism_states_pub("mechanism_state", &mechanism_states_msg);
 
 float linear_x, angular_z;
 bool is_ros_connected;
+bool go_to_home = false;
+int goal_distance = 0;
 
 void Rosserial_init()
 {
     nh.initNode();
     nh.subscribe(sub);
+    nh.subscribe(goToHomeSub);
+    nh.subscribe(goalSub);
     nh.advertise(pose_pub);
     nh.advertise(twist_pub);
+    nh.advertise(mechanism_states_pub);
     nh.getHardware()->setBaud(57600);
+}
+void goal_distance_cb(const std_msgs::Int16 &msg)
+{
+    goal_distance = msg.data;
+}
+void go_to_home_cb(const std_msgs::Bool &msg)
+{
+    go_to_home = msg.data;
+}
+std::pair<int, bool> get_mechanism()
+{
+    return {goal_distance, go_to_home};
+}
+
+void publish_mechanism_states(int states_num)
+{
+    String mechanism_state[] = {
+        "waiting_for_goal",
+        "going_to_goal",
+        "goal_reached",
+        "going_to_home"};
+
+    // mechanism_states_msg.data = mechanism_state[0].c_str();
+    // mechanism_states_pub.publish(&mechanism_states_msg);
 }
 
 void cmd_vel_cb(const geometry_msgs::Twist &cmd_msg)
 {
-    linear_x = cmd_msg.linear.x;       // m/s
+    linear_x = cmd_msg.linear.x;   // m/s
     angular_z = cmd_msg.angular.z; // rad/s
     // nh.loginfo((" " + String(linear_x)).c_str());
 }

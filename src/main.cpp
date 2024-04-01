@@ -2,6 +2,7 @@
 #include <RC_Control.hpp>
 #include <ODrive.hpp>
 #include <ROS_Node.hpp>
+#include <mechanism.hpp>
 
 unsigned long previous_millis, time_interval = 50;
 float linear = 0, angular = 0;
@@ -12,6 +13,7 @@ void setup()
   bluetooth_init();
   Odrive_init();
   Rosserial_init();
+  // mechanism_init();
   pinMode(2, OUTPUT);
 }
 std::pair<float, float> RC_Cmd(0, 0);
@@ -20,6 +22,7 @@ std::pair<float, float> Ros_Cmd;
 void loop()
 {
   RC_Control(RC_Cmd.first, RC_Cmd.second); // zeros if not RC connected
+  // move_mechanism(10);
 
   if (!is_ros_connected && !is_bluetooth_connected)
   {
@@ -56,8 +59,14 @@ void loop()
       }
     }
   }
+  // Serial.println("linear: " + String(linear));
+  // Serial.println("angular: " + String(angular));
 
   driveMotors(linear, angular);
+
+  // ! Application
+  std::pair<int, bool> get_mechanism_data = get_mechanism();
+  int val = move_mechanism(get_mechanism_data.first, get_mechanism_data.second);
 
   // ros_spin
   ROS_Update();
