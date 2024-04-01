@@ -14,6 +14,7 @@ std::pair<float, float> previous_average_position, average_position; // right, l
 std::pair<float, float> motor_speed;                                 // right, left
 float actual_x, actual_y, orientation;
 const float tyre_circumference = 2 * 3.14159 * WheelRadius;
+float feed_forward;
 
 void Odrive_init()
 {
@@ -50,13 +51,19 @@ void Serial_Motor_Test(char input)
 
 void driveMotors(float linear_velocity, float angular_velocity)
 {
+    // if (linear_velocity==0 && angular_velocity==0)
+    //     feed_forward=0.0;
+    // else
+    //     feed_forward=1.5;
+    feed_forward = (linear_velocity == 0 && angular_velocity == 0) ? 0.0 : 1.0;
+
     right_velocity = (linear_velocity + angular_velocity * RobotBase / 2.0) / tyre_circumference;
     left_velocity = (linear_velocity - angular_velocity * RobotBase / 2.0) / tyre_circumference;
 
-    back_odrive.SetVelocity(BackLeftMotor, -left_velocity, 1);
-    back_odrive.SetVelocity(BackRightMotor, right_velocity, 1);
-    front_odrive.SetVelocity(FrontLeftMotor, -left_velocity, 1);
-    front_odrive.SetVelocity(FrontRightMotor, right_velocity, 1);
+    back_odrive.SetVelocity(BackLeftMotor, -left_velocity, -feed_forward);
+    back_odrive.SetVelocity(BackRightMotor, right_velocity, feed_forward);
+    front_odrive.SetVelocity(FrontLeftMotor, -left_velocity, -feed_forward);
+    front_odrive.SetVelocity(FrontRightMotor, right_velocity, feed_forward);
 }
 
 void getPosition(bool debug = false)
@@ -127,19 +134,19 @@ std::pair<geometry_msgs::Pose, geometry_msgs::Twist> getOdom()
     // print_on_terminal("distance: ",distance);
     // print_on_terminal("delta_theta",delta_theta);
 
-
     // get distance in x and y (projection)
+    float xd = cos(delta_theta) * distance;
+    float yd = -sin(delta_theta) * distance;
+
     orientation += delta_theta;
 
-    float xd = cos(orientation) * distance;
-    float yd = -sin(orientation) * distance;
+    actual_x += cos(orientation) * xd - sin(orientation) * yd;
+    actual_y += sin(orientation) * xd + cos(orientation) * yd;
 
-    actual_x += xd;
-    actual_y += yd;
     // print_on_terminal("actual_x",actual_x);
     // print_on_terminal("actual_y",actual_y);
     // print_on_terminal("\n---------------------",0);
-    
+
     if (orientation > 2 * 3.14159)
         orientation = 0;
 
@@ -157,7 +164,6 @@ std::pair<geometry_msgs::Pose, geometry_msgs::Twist> getOdom()
 
     return {_pose, _twist};
 }
-
 
 // std::pair<geometry_msgs::Pose, geometry_msgs::Twist> getOdom()
 // {
