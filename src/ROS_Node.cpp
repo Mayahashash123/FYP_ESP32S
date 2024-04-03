@@ -3,7 +3,6 @@
 ros::NodeHandle nh;
 
 ros::Subscriber<geometry_msgs::Twist> sub("cmd_vel", &cmd_vel_cb);
-ros::Subscriber<std_msgs::Bool> goToHomeSub("go_home", &go_to_home_cb);
 ros::Subscriber<std_msgs::Int16> goalSub("goal_distance", &goal_distance_cb);
 
 geometry_msgs::Pose pose_msg;
@@ -23,7 +22,6 @@ void Rosserial_init()
 {
     nh.initNode();
     nh.subscribe(sub);
-    nh.subscribe(goToHomeSub);
     nh.subscribe(goalSub);
     nh.advertise(pose_pub);
     nh.advertise(twist_pub);
@@ -34,13 +32,10 @@ void goal_distance_cb(const std_msgs::Int16 &msg)
 {
     goal_distance = msg.data;
 }
-void go_to_home_cb(const std_msgs::Bool &msg)
+
+int get_mechanism()
 {
-    go_to_home = msg.data;
-}
-std::pair<int, bool> get_mechanism()
-{
-    return {goal_distance, go_to_home};
+    return goal_distance;
 }
 
 void publish_mechanism_states(int states_num)

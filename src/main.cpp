@@ -4,16 +4,16 @@
 #include <ROS_Node.hpp>
 #include <mechanism.hpp>
 
-unsigned long previous_millis, time_interval = 50;
+unsigned long previous_millis, time_interval = 100;
 float linear = 0, angular = 0;
 
 void setup()
 {
-  Serial.begin(57600);
-  bluetooth_init();
-  Odrive_init();
+  // Serial.begin(57600);
+  // bluetooth_init();
+  // Odrive_init();
   Rosserial_init();
-  // mechanism_init();
+  mechanism_init();
   pinMode(2, OUTPUT);
 }
 std::pair<float, float> RC_Cmd(0, 0);
@@ -54,7 +54,7 @@ void loop()
 
       if (millis() - previous_millis > time_interval)
       {
-        publish_odom(getOdom());
+        // publish_odom(getOdom());
         previous_millis = millis();
       }
     }
@@ -65,9 +65,26 @@ void loop()
   driveMotors(linear, angular);
 
   // ! Application
-  std::pair<int, bool> get_mechanism_data = get_mechanism();
-  int val = move_mechanism(get_mechanism_data.first, get_mechanism_data.second);
-
+  int goalDistance = get_mechanism();
+  int val = move_mechanism(goalDistance);
+  // publish_mechanism_states(val);
+  if (val == goal_reached)
+  {
+    print_on_terminal("goal reached");
+  }
+  else if (val == going_to_goal)
+  {
+    print_on_terminal("going to goal");
+  }
+  else if (val == waiting_for_goal)
+  {
+    print_on_terminal("waiting for goal");
+  }
+  else if (val == going_to_home)
+  {
+    print_on_terminal("going to home");
+  }
+  previous_millis = millis();
   // ros_spin
   ROS_Update();
 }

@@ -17,7 +17,8 @@
     going_to_home
 }; 
 void mechanism_init();
-mechanism_state move_mechanism(float distance, bool go_home);
+int move_mechanism(float distance);
+
 void move_down();
 void move_up();
 void stop();
