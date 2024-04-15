@@ -24,6 +24,12 @@ void Odrive_init()
     // Serial.println("odrive initialized");
 }
 
+float getvoltage()
+{
+    front_odrive_serial << "r vbus_voltage\n";
+    return front_odrive.readFloat();
+}
+
 void Serial_Motor_Test(char input)
 {
     switch (input)
@@ -55,7 +61,7 @@ void driveMotors(float linear_velocity, float angular_velocity)
     //     feed_forward=0.0;
     // else
     //     feed_forward=1.5;
-    feed_forward = (linear_velocity == 0 && angular_velocity == 0) ? 0.0 : 0.2;
+    feed_forward = (linear_velocity == 0 && angular_velocity == 0) ? 0.0 : 0.5;
 
     right_velocity = (linear_velocity + angular_velocity * RobotBase / 2.0) / tyre_circumference;
     left_velocity = (linear_velocity - angular_velocity * RobotBase / 2.0) / tyre_circumference;
@@ -82,11 +88,9 @@ void getPosition(bool debug = false)
     average_position.first = back_right_position;
     average_position.second = back_left_position;
 
-    motor_speed.first = back_odrive.GetVelocity(BackRightMotor);
-    motor_speed.second = -1 * back_odrive.GetVelocity(BackLeftMotor);
-    // print_on_terminal("back right: ", average_position.first);
-    // print_on_terminal("back right: ", average_position.first);
-    // print_on_terminal("-------------------", 0);
+    // motor_speed.first = back_odrive.GetVelocity(BackRightMotor);
+    // motor_speed.second = -1 * back_odrive.GetVelocity(BackLeftMotor);
+
 
     if (debug)
     {
