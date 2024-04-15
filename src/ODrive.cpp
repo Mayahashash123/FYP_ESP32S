@@ -55,7 +55,7 @@ void driveMotors(float linear_velocity, float angular_velocity)
     //     feed_forward=0.0;
     // else
     //     feed_forward=1.5;
-    feed_forward = (linear_velocity == 0 && angular_velocity == 0) ? 0.0 : 1.0;
+    feed_forward = (linear_velocity == 0 && angular_velocity == 0) ? 0.0 : 0.2;
 
     right_velocity = (linear_velocity + angular_velocity * RobotBase / 2.0) / tyre_circumference;
     left_velocity = (linear_velocity - angular_velocity * RobotBase / 2.0) / tyre_circumference;

@@ -35,6 +35,7 @@ void goal_distance_cb(const std_msgs::Int16 &msg)
 
 int get_mechanism()
 {
+    print_on_terminal("goal_distance: ", goal_distance);
     return goal_distance;
 }
 

@@ -38,11 +38,11 @@ void RC_Control(float &linear_velocity, float &angular_velocity)
         break;
 
     case 'l':
-        angular_velocity += 0.07;
+        angular_velocity += 0.1;
         break;
 
     case 'r':
-        angular_velocity -= 0.07;
+        angular_velocity -= 0.1;
         break;
     }
     // return rc_input;

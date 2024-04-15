@@ -2,12 +2,13 @@
 #define _MECHANISM_HPP
 
 #include <Arduino.h>
+#include <analogWrite.h>
 
 #define limit_switch 27
 #define motor_up 33
 #define motor_down 32
-#define encoder_pin 25
-#define hall_sensor 26
+#define encoder_pin 12
+#define hall_sensor 14
 
  enum mechanism_state
 {
