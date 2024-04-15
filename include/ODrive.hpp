@@ -31,9 +31,13 @@ void driveMotors_RC(char input);
 void driveMotors(float linear_velocity, float angular_velocity);
 float getvoltage();
 std::pair<geometry_msgs::Pose, geometry_msgs::Twist> getOdom();
+std::pair<geometry_msgs::Pose, geometry_msgs::Twist> getOdom_Core0();
+
 
 
 void Serial_Motor_Test(char input); 
+
+void getPosition(bool debug );
 
 
 // Printing with stream operator helper functions

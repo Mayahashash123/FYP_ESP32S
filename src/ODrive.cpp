@@ -7,6 +7,9 @@ SoftwareSerial front_odrive_serial(SoftwareSerial_PIN_RX, SoftwareSerial_PIN_TX)
 ODriveArduino back_odrive(back_odrive_serial);
 ODriveArduino front_odrive(front_odrive_serial);
 
+TaskHandle_t encoderTask;
+void Task1code(void *parameter);
+
 float linear_velocity, angular_velocity, right_velocity, left_velocity;
 float velocity, velocity_limit = 1.0, cmd_velocity_limit = 0.1;
 float front_right_position, front_left_position, back_right_position, back_left_position, average_right_position, average_left_position;
@@ -22,6 +25,29 @@ void Odrive_init()
     front_odrive_serial.begin(BAUDRATE);
     back_odrive_serial.begin(BAUDRATE);
     // Serial.println("odrive initialized");
+
+    xTaskCreatePinnedToCore(
+        Task1code,     /* Function to implement the task */
+        "encoderTask", /* Name of the task */
+        4096,          /* Stack size in words */
+        NULL,          /* Task input parameter */
+        1,             /* Priority of the task */
+        &encoderTask,  /* Task handle. */
+        0);
+}
+std::pair<geometry_msgs::Pose, geometry_msgs::Twist> odom_pair;
+void Task1code(void *parameter)
+{
+    for (;;)
+    {
+        odom_pair = getOdom_Core0();
+        digitalWrite(2, !digitalRead(2));
+        vTaskDelay(pdMS_TO_TICKS(75));
+    }
+}
+
+std::pair<geometry_msgs::Pose, geometry_msgs::Twist> getOdom(){
+    return odom_pair;
 }
 
 float getvoltage()
@@ -91,7 +117,6 @@ void getPosition(bool debug = false)
     // motor_speed.first = back_odrive.GetVelocity(BackRightMotor);
     // motor_speed.second = -1 * back_odrive.GetVelocity(BackLeftMotor);
 
-
     if (debug)
     {
         // Serial.println("front right: " + String(front_right_position));
@@ -110,9 +135,9 @@ void euler_to_quat(float x, float y, float z, float *q)
     q[3] = cos(x / 2) * cos(y / 2) * cos(z / 2) + sin(x / 2) * sin(y / 2) * sin(z / 2);
 }
 
-std::pair<geometry_msgs::Pose, geometry_msgs::Twist> getOdom()
+std::pair<geometry_msgs::Pose, geometry_msgs::Twist> getOdom_Core0()
 {
-    getPosition();
+    getPosition(false);
     // nav_msgs::Odometry odom;
     geometry_msgs::Pose _pose;
     geometry_msgs::Twist _twist;
