@@ -9,6 +9,7 @@
 #define motor_down 32
 #define encoder_pin 12
 #define hall_sensor 14
+#define laser_pin 15
 
  enum mechanism_state
 {
