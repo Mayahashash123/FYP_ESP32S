@@ -4,14 +4,17 @@ ros::NodeHandle nh;
 
 ros::Subscriber<geometry_msgs::Twist> sub("cmd_vel", &cmd_vel_cb);
 ros::Subscriber<std_msgs::Int16> goalSub("goal_distance", &goal_distance_cb);
+ros::Subscriber<std_msgs::Bool> laserSub("laser_pointer", &laser_pointer_cb);
 
 geometry_msgs::Pose pose_msg;
 geometry_msgs::Twist twist_msg;
 std_msgs::String mechanism_states_msg;
+std_msgs::Float32 battery_level;
 
 ros::Publisher pose_pub("pose", &pose_msg);
 ros::Publisher twist_pub("twist", &twist_msg);
 ros::Publisher mechanism_states_pub("mechanism_state", &mechanism_states_msg);
+ros::Publisher batteryPub("battery_percentage", &battery_level);
 
 float linear_x, angular_z;
 bool is_ros_connected;
@@ -23,19 +26,24 @@ void Rosserial_init()
     nh.initNode();
     nh.subscribe(sub);
     nh.subscribe(goalSub);
+    nh.subscribe(laserSub);
+
     nh.advertise(pose_pub);
     nh.advertise(twist_pub);
     nh.advertise(mechanism_states_pub);
+    nh.advertise(batteryPub);
+
     nh.getHardware()->setBaud(57600);
 }
 void goal_distance_cb(const std_msgs::Int16 &msg)
 {
     goal_distance = msg.data;
+    print_on_terminal("goal distance: ", float(goal_distance));
 }
 
 int get_mechanism()
 {
-    print_on_terminal("goal_distance: ", goal_distance);
+    // print_on_terminal("goal_distance:::: ", goal_distance);
     return goal_distance;
 }
 
@@ -47,15 +55,22 @@ void publish_mechanism_states(int states_num)
         "goal_reached",
         "going_to_home"};
 
-    // mechanism_states_msg.data = mechanism_state[0].c_str();
-    // mechanism_states_pub.publish(&mechanism_states_msg);
+    Serial.println(mechanism_state[states_num]);
+    mechanism_states_msg.data = mechanism_state[states_num].c_str();
+    mechanism_states_pub.publish(&mechanism_states_msg);
 }
 
 void cmd_vel_cb(const geometry_msgs::Twist &cmd_msg)
 {
     linear_x = cmd_msg.linear.x;   // m/s
     angular_z = cmd_msg.angular.z; // rad/s
-    // nh.loginfo((" " + String(linear_x)).c_str());
+    nh.loginfo((" " + String(linear_x)).c_str());
+}
+
+void laser_pointer_cb(const std_msgs::Bool &pointer_msg)
+{
+    digitalWrite(laser_pin, pointer_msg.data);
+    print_on_terminal("laser data: ", pointer_msg.data);
 }
 
 void publish_odom(std::pair<geometry_msgs::Pose, geometry_msgs::Twist> odometry)
@@ -77,16 +92,22 @@ void publish_odom(std::pair<geometry_msgs::Pose, geometry_msgs::Twist> odometry)
     twist_pub.publish(&twist_msg);
 }
 
+void publish_battery_percentage(float battery_percentage)
+{
+    battery_level.data = battery_percentage;
+    batteryPub.publish(&battery_level);
+}
+
 float get_linear_velocity()
 {
-    nh.loginfo(("linear: " + String(linear_x)).c_str());
+    // nh.loginfo(("linear: " + String(linear_x)).c_str());
     return linear_x;
 }
 
 float get_angular_velocity()
 {
-    nh.loginfo(("angular: " + String(angular_z)).c_str());
-    nh.loginfo("-------------------");
+    // nh.loginfo(("angular: " + String(angular_z)).c_str());
+    // nh.loginfo("-------------------");
     return angular_z;
 }
 
@@ -98,7 +119,12 @@ void print_on_terminal(String msg, float value)
 void ROS_Update()
 {
     is_ros_connected = nh.connected();
-    digitalWrite(2, is_ros_connected);
+    // digitalWrite(2, is_ros_connected);
     nh.spinOnce();
     delay(1);
+}
+
+ros::NodeHandle get_nh()
+{
+    return nh;
 }
