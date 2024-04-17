@@ -28,11 +28,12 @@ void loop()
 {
 
   //?RC control
-  RC_Control(RC_Cmd.first, RC_Cmd.second, mechanism_rc_goal); // zeros if not RC connected
+  RC_Control(RC_Cmd.first, RC_Cmd.second); // zeros if not RC connected
 
   //?cmd_vel control
   if (!is_ros_connected && !is_bluetooth_connected)
   {
+    // linear = angular = mechanism_rc_goal = 0;
     linear = angular = mechanism_rc_goal = 0;
   }
   else

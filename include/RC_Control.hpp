@@ -5,7 +5,8 @@
 
 void bluetooth_init();
 // char Read_RC_Input();
-void RC_Control(float &linear_velocity, float &angular_velocity, int &mechanism_height);
+// void RC_Control(float &linear_velocity, float &angular_velocity, int &mechanism_height);
+void RC_Control(float &linear_velocity, float &angular_velocity);
 extern bool is_bluetooth_connected;
 
 

@@ -8,7 +8,8 @@ void bluetooth_init()
 }
 char rc_input = ' ';
 
-void RC_Control(float &linear_velocity, float &angular_velocity, int &mechanism_height)
+// void RC_Control(float &linear_velocity, float &angular_velocity, int &mechanism_height)
+void RC_Control(float &linear_velocity, float &angular_velocity)
 {
     is_bluetooth_connected = SerialBT.connected();
     if (!is_bluetooth_connected)
@@ -45,13 +46,13 @@ void RC_Control(float &linear_velocity, float &angular_velocity, int &mechanism_
         angular_velocity -= 0.1;
         break;
 
-    case 'u':
-        mechanism_height = 90;
-        break;
+    // case 'u':
+    //     mechanism_height = 90;
+    //     break;
 
-    case 'd':
-        mechanism_height = 0;
-        break;
+    // case 'd':
+    //     mechanism_height = 0;
+    //     break;
 
     }
     // return rc_input;

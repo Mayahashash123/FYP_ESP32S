@@ -76,6 +76,7 @@ void laser_pointer_cb(const std_msgs::Bool &pointer_msg)
 void publish_odom(std::pair<geometry_msgs::Pose, geometry_msgs::Twist> odometry)
 // void publish_odom()
 {
+    // print_on_terminal("publish odom function");
     const geometry_msgs::Pose input_pose_msg = odometry.first;
     const geometry_msgs::Twist input_twist_msg = odometry.second;
 

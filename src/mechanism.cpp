@@ -12,6 +12,8 @@ unsigned long previous_counting_millis;
 mechanism_state Mechanism_State;
 // TaskHandle_t encoderTask;
 // void Task1code(void *parameter);
+TaskHandle_t encoderTask;
+void Task1code(void *parameter);
 
 void mechanism_init()
 {
@@ -28,8 +30,34 @@ void mechanism_init()
     Mechanism_State = going_to_home;
     current_steps = 0;
     Serial.println("mechanism setup");
+
+    xTaskCreatePinnedToCore(
+        Task1code,     /* Function to implement the task */
+        "encoderTask", /* Name of the task */
+        4096,          /* Stack size in words */
+        NULL,          /* Task input parameter */
+        1,             /* Priority of the task */
+        &encoderTask,  /* Task handle. */
+        0);
 }
 
+void Task1code(void *parameter)
+{
+    for (;;)
+    {
+        // print_on_terminal("core 0 function");
+        // odom_pair = getOdom_Core0();
+        prev_encoder = encoder;
+        encoder = digitalRead(encoder_pin);
+        digitalWrite(2, !digitalRead(2));
+        if (encoder && !prev_encoder && millis() - previous_counting_millis)
+        {
+            current_steps++;
+            previous_counting_millis = millis();
+        }
+        vTaskDelay(pdMS_TO_TICKS(75));
+    }
+}
 int move_mechanism(float distance)
 {
     bool go_home = false;
@@ -40,11 +68,9 @@ int move_mechanism(float distance)
     else if (distance == 0 && Mechanism_State == goal_reached)
         go_home = true;
 
-    prev_encoder = encoder;
-    encoder = digitalRead(encoder_pin);
     if (Mechanism_State == waiting_for_goal)
     {
-        goal_steps = round((44.0 * (2.5 + (distance - 25.0))) / 153.0); //
+        goal_steps = round((44.0 * (2.5 + (distance - 25.0))) / 153.0);
         // print_on_terminal("goal_steps: ", goal_steps);
         Mechanism_State = going_to_goal;
     }
@@ -58,15 +84,10 @@ int move_mechanism(float distance)
             // goal = true;
             move_up();
 
-            if (encoder && !prev_encoder)
-            {
-                current_steps++;
-                previous_counting_millis = millis();
-            }
-            Serial.println("current_steps: " + String(current_steps));
+            print_on_terminal("goal steps: ", goal_steps);
             print_on_terminal("encoder: ", encoder);
             print_on_terminal("prev_encoder: ", prev_encoder);
-            print_on_terminal("going to maya steps: ", current_steps);
+            print_on_terminal("current steps: ", current_steps);
             print_on_terminal("-------------------");
         }
         else
@@ -105,7 +126,7 @@ int move_mechanism(float distance)
             goal_steps = 0;
         }
     }
-
+    // print_on_terminal("mechanism state: ", );
     return Mechanism_State;
 }
 
